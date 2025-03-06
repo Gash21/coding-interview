@@ -4,12 +4,16 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"regexp"
+	"strings"
 )
 
 func main() {
 	fmt.Println("Enter a string:")
 	str, _, _ := bufio.NewReader(os.Stdin).ReadLine()
-	fmt.Println(IsPalindrome(string(str)))
+	alphanumeric := regexp.MustCompile("[^a-zA-Z0-9]")
+	strgs := alphanumeric.ReplaceAllString(string(str), "")
+	fmt.Println(IsPalindrome(strings.ToLower(string(strgs))))
 }
 
 func IsPalindrome(str string) bool {
